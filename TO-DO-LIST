@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST</title>
+</head>
+<body>
+
+    <div class="overall">
+        <input type="text" placeholder="Enter an item" id="input">
+        <button id="btn"> +</button>
+    </div>
+    <style>
+.overall{
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-top: 100px;
+    margin-left: 500px;
+}
+
+#btn{
+    border: none;
+    display: flex;
+    padding: 2px;
+    border: 1px aqua;
+    font-size: 1.5rem;
+    margin-left: 5px;
+    background-color: red;
+    transform: translate(1200%, -100%);
+    align-items: center;
+    text-align: center;
+}
+
+#input{
+    font-size: 1.5rem;
+}
+
+.task{
+   display: flex;
+    list-style-type: none;
+    background-color: grey;
+    width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.checkBtn{
+    border-radius: 5px;
+    border: none;
+    background-color: orange;
+    margin-right: 10px;
+    height: 50px;
+    width: 50px;
+    margin-left: 100px;
+}
+
+.trashBtn{
+    border-radius: 5px;
+    border: none;
+    background-color: red;
+    width: 50px;
+}
+
+.checkBtn:hover{
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    color: orange;
+}
+
+.trashBtn:hover{
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    color: red;
+}
+    </style>
+
+    <script>
+        const overall = document.querySelector(".overall");
+const button = document.getElementById("btn");
+const input = document.getElementById("input");
+
+button.addEventListener("click", function () {
+    let task = document.createElement("div");
+    task.classList.add("task");
+
+    let li = document.createElement("li");
+    li.innerText = `${input.value}`
+    task.appendChild(li);
+
+    let checkBtn = document.createElement("button");
+    checkBtn.innerHTML = "DONE";
+    checkBtn.classList.add("checkBtn");
+    task.appendChild(checkBtn);
+
+    let trashBtn = document.createElement("button");
+    trashBtn.innerHTML = "DELETE";
+    trashBtn.classList.add("trashBtn");
+    task.appendChild(trashBtn);
+
+    if (input.value === "") {
+        window.alert("Please enter a task")
+    }else{
+        overall.appendChild(task);
+    }
+
+    input.value = "";
+
+    checkBtn.addEventListener("click", function () {
+    checkBtn.parentElement.style.textDecoration = "line-through";
+});
+
+trashBtn.addEventListener("click", function (e) {
+    let target = e.target;
+    target.parentElement.remove();
+});
+
+
+});
+
+
+
+
+
+    </script>
+</body>
+</html>
